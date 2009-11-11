@@ -463,7 +463,8 @@ class sonicIRCConnection(QThread) :
         self.scrollback[channel] += log
         self.emit(SIGNAL("newmessage"), "%s/%s" % (self.host, channel), self.scrollback[channel])
 def main():
-
+    if "logs" not in glob.glob("*") :
+        os.mkdir("logs")
     app = QApplication([])
     
     window = sonicIRCWindow()
