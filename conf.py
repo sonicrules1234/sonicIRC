@@ -4,19 +4,25 @@
 # Remember to put all strings in quotes.
 # 2) If debug is set to True, it will print out raw IRC in the console,
 # otherwise it print it parsed.
-# 3) You need to list each host in the order that you would like sonicbot to connect
-# 4) Channels is a dict in which you specify the host against the channels
-# (in a list) Example: channels = {"irc.freenode.net" : ["#sonicIRC", "#test"]}
+# 3) Fill out the servers dict like:
+# servers = {<hostname>:{"port":<port>, "channels":[<channels>]}}
+# Example : servers = {"irc.freenode.net":{"port":6667, "channels":["#sonicIRC"]}}
 
 
-hosts = [""]
-ports = [6667]
-ident = ""
-nick = ""
-channels = {"":[]}
-realname = nick
+servers = {"":{"port":6667, "channels":[""]}}
 bpass = ""
 debug = True
+nick = ""
+ident = nick
+realname = nick
 
+
+##DO NOT EDIT ANYTHING BELOW THIS LINE
+
+hosts = servers.keys()
+ports = [servers[host]["port"] for host in hosts]
+channels = {}
+for host in hosts :
+    channels[host] = servers[host]["channels"]
 
 
